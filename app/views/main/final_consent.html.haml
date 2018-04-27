@@ -1,0 +1,15 @@
+%h3 Consent to store data:
+%p Data entered for this experiment is anonymous, therefore you cannot be identified by it.  This means that once stored, your answers and other data cannot be shown to you or deleted.
+%hr
+.fieldset
+  %table.table
+    %form{ :action => "/experiment", :method => "post"}
+      %tr
+        %td
+          = raw "<input type='checkbox' class='big-checkbox' style='width:48px;height:48px' name='agree' value='1' />"
+        %td.consent-text
+          = raw "<div>I acknowledge that by pressing Submit my data will be anonymised and I will not be able to request it be shown to me or deleted at a later date</div>"
+      %tr
+        %td
+          = raw "<input type='submit' name='commit' value='Submit' class='btn btn-primary btn-lg' data-disable-with='Submit' />"
+%p * If you do not wish to have your answers stored please close your web browser.  Your answers will be discarded.      

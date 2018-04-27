@@ -1,0 +1,23 @@
+%h3 Scenario:
+.sentence
+  %p= @question.statement.value
+%br
+%h3 Explanation:
+- if @question.statement.explainer.explainer_image
+  =image_tag  @question.statement.explainer.explainer_image.url, class: "img-responsive"
+- else
+  .sentence
+    %p
+      =@question.statement.explainer.explainer_text.text
+%br
+%h3 Question:
+%br
+%form{ :action => "/answer/#{@test_question.id}?", :method => "post"}
+  = hidden_field_tag 'question_id', @question.id
+  %label{:class => "sentence question"}= "Just using the question id (could have text): #{@question.id}?"
+  %ul{:class => "likert"}
+    - @question.answers(order: :id).each do |answer|
+      %li
+        =radio_button_tag("answer_id", "#{answer.id}", false, {:onchange => 'document.getElementById(\'b1\').disabled = false;'})
+        =label_tag "answer_id_#{answer.id}", answer.value.sub(/^./, &:upcase)
+  %input{:type => "submit", :value => "Next", :class => "btn btn-primary btn-lg", :id => "b1", :disabled => true}

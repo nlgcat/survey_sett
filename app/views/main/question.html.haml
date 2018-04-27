@@ -1,0 +1,9 @@
+%h3= @question.value
+%form{ :action => "/answer/#{@test_question.id}?", :method => "post"}
+  = hidden_field_tag 'question_id', @question.id
+  - @question.answers(order: :id).each do |answer|
+    %p
+      %span
+        =radio_button_tag("answer_id", "#{answer.id}", false, {:onchange => 'document.getElementById(\'b1\').disabled = false;'})
+        =label_tag "answer_id_#{answer.id}", answer.value.sub(/^./, &:upcase)
+  %input{:type => "submit", :value => "Next", :class => "btn btn-primary btn-lg", :id => "b1", :disabled => true}

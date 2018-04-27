@@ -1,0 +1,8 @@
+%h3 The following is a scenario
+%p You will be given an explanation for how the AI system behaved and asked to rate it.
+.sentence
+  %p= @statement.value
+%br
+%form{ :action => "/test_read/#{@test.id}", :method => "post"}
+  %input{:type => "submit", :value => "Start", :class => "btn btn-primary btn-lg right"}
+%hr

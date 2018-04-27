@@ -1,0 +1,5 @@
+%h3="Scenario #{@done} Complete"
+%p="You have #{@remaining} #{@remaining == 1 ? 'scenario' : 'scenarios'} remaining to evaluate."
+%hr
+%form{ :action => "/experiment", :method => "get"}
+  %input{:type => "submit", :value => "Next Scenario", :class => "btn btn-primary btn-lg", :id => "b1", :disabled => false}

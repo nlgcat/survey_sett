@@ -1,0 +1,43 @@
+= image_tag  "uoa_logo.png", class: "img-responsive"
+%h3 Experiment: #{@name}
+%p This experiment is designed to test which types of information you remember best from a paragraph you have just read.  Your answers are anonymous and no information which can identify you will be stored.
+%p This experiment is designed and run by Craig Thomson, a PhD Research Student at The University of Aberdeen.  This research will form part of my PhD thesis.
+%p If you choose to participate in the experiment you will be asked to read a paragraph of text. Once you have finished reading the paragraph you will be asked a series of multiple choice questions about it.  You will be asked to repeat the experiment a further 2 times, with each paragraph-question set taking approximately 5 minutes to complete.  A total time of about 15 minutes.
+%hr
+%h3 Consent Form for #{@name}
+%p Please read the statements below and tick each box if you consent.  If you consent to each statement and have ticked each box, please click the "I agree to participate" button if you wish to proceed.  If you have any questions about the experiment please contact me (Craig Thomson: craig.thomson@abdn.ac.uk).
+%hr
+= raw "#{@attempted_consent ? '<div class="alert alert-danger"><strong>If you wish to participate in the experiment please tick the checkboxes for statements you agree with then click \'I agree to participate\'</strong></div>' : ''}"
+.fieldset
+  %table.table
+    = simple_form_for(:consent, html: { class: 'form-inline' }) do |form|
+      - @statements.each do |name, text|
+        %tr
+          %td
+            = raw "<input type='checkbox' class='big-checkbox' style='width:48px;height:48px' name='#{name}' value='1' #{@errors[name] ? 'checked' : '' } />"
+          %td.consent-text
+            = raw "<div #{(@errors[name] == false and @attempted_consent) ? "class='alert alert-danger'" : ''}>#{text}</div>"
+      %tr
+        %td
+          %select.big-select{:name => 'native'}
+            %option.big-option{value: "-- Please Select", selected: (['Yes','No'].include? @native) }= "-- Please Select"
+            %option.big-option{value: 'Yes', selected: @native == "Yes"}= "Yes"
+            %option.big-option{value: 'No', selected: @native == "No"}= "No"
+          %td
+            = raw "<div #{(@attempted_consent and not ['Yes','No'].include? @native) ? "class='alert alert-danger'" : ''}>Is English your native language?</div>"
+      %tr
+        %td
+          %select.big-select{:name => 'gender'}
+            %option.big-option{value: 0, selected: @gender }= "-- Please Select"
+            - @genders.each do |gender|
+              %option.big-option{value: gender.id, selected: (@gender.to_s == gender.id.to_s)}= "#{gender.value}"
+          %td
+            = raw "<div #{(@attempted_consent and @gender == '0') ? "class='alert alert-danger'" : ''}>What is your gender?</div>"
+      %tr
+        %th 
+      %tr
+        %td
+          = raw "<input type='submit' name='commit' value='#{@agree_button_text}' class='btn btn-primary btn-lg' data-disable-with='I agree to participate' />"
+
+
+      
