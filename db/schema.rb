@@ -99,10 +99,12 @@ Sequel.migration do
     create_table(:question_formats) do
       primary_key :id
       column :name, "text", :null=>false
+      column :view, "text", :null=>false
       column :created_at, "timestamp without time zone", :null=>false
       column :updated_at, "timestamp without time zone", :null=>false
       
       index [:name], :unique=>true
+      index [:view]
     end
     
     create_table(:question_types) do

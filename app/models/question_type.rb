@@ -2,11 +2,8 @@ class QuestionType < Sequel::Model
   plugin :timestamps, update_on_create: true
   one_to_many :questions
 
-  WARMUP      = 'Warm-up'
-  DISTRACTOR  = 'Distractor'
-  CATEGORY_A  = 'Category A'
-  CATEGORY_B  = 'Category B'
-  CATEGORY_C  = 'Category C'
+  STANDARD  = 'Standard'
+  ALTERNATE = 'Alternate'
 
   def self.type_id t
     self.find(name: t).id
@@ -17,12 +14,10 @@ class QuestionType < Sequel::Model
   end
 
   def self.limits
-    limits = {
-        # get_id_from_name(WARMUP)      => 6,
-        # get_id_from_name(DISTRACTOR)  => 4,
-        get_id_from_name(CATEGORY_A)  => 6,
-        # get_id_from_name(CATEGORY_B)  => 1,
-        # get_id_from_name(CATEGORY_C)  => 1,
-      }
+    limits = {}
+    QuestionType.all.each do |question_type|
+      limits[question_type.id] = question_type.quantity_required
+    end
+    limits
   end
 end

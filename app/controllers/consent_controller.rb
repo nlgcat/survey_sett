@@ -3,7 +3,7 @@ class ConsentController < ApplicationController
     @name               = 'Types of Information Recalled from a Paragraph'
     @errors             = error_types
     @checked            = @errors
-    @participant            = current_participant
+    @participant        = current_participant
     @statements         = statements @name
     @agree_button_text  = agree_button_text
     @native             = params[:native]

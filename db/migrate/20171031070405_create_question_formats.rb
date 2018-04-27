@@ -6,6 +6,7 @@ Sequel.migration do
 
       # Data
       String  :name,  null: false
+      String  :view,  null: false
 
       # Timestamps
       DateTime  :created_at,  null: false
@@ -13,6 +14,7 @@ Sequel.migration do
 
       # Index
       index [:name], unique: true
+      index [:view]
     end
   end
 end

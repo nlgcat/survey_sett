@@ -115,7 +115,7 @@ class MainController < ApplicationController
       next if test_question.answer
       @test_question = test_question
       @question = test_question.question
-      render :question_likert
+      render @question.question_format.to_sym
       break
     end
   end
