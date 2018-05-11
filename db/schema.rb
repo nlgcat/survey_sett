@@ -285,7 +285,7 @@ self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('2017110707022
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20171107070239_create_answers_test_questions.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20171218145857_create_education_levels.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20171218150100_create_education_levels_participants.rb')"
-self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180424111103_create_explainer_categories.rb')"
+self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180424111102_create_explainer_categories.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180424111103_create_explainers.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180424111108_create_explainer_texts.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180424111120_create_explainer_images.rb')"
