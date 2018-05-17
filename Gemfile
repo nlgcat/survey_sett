@@ -22,6 +22,9 @@ gem 'uglifier', '>= 1.3.0'
 # loofah security vulnerability
 gem 'loofah', '~> 2.2.1'
 
+# html sanitizer vulnerability
+gem 'rails-html-sanitizer', '~> 1.0.4'
+
 # DB - Sequel / Postgres
 gem 'pg'
 gem 'sequel-rails'

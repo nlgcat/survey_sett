@@ -251,6 +251,7 @@ DEPENDENCIES
   pg
   puma (~> 3.7)
   rails (~> 5.1.4)
+  rails-html-sanitizer (~> 1.0.4)
   roo
   ruby-prof
   sass-rails (~> 5.0)
