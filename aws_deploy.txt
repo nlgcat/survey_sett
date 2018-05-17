@@ -1,0 +1,5 @@
+# Ubuntu
+
+# https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
+pip install awsebcli --upgrade
+
