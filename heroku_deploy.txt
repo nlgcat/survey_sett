@@ -1,0 +1,20 @@
+# Ububtu
+
+# Install Heroku
+sudo snap install heroku --classic
+
+# Create heroku in rails folder
+heroku create
+
+# Push from your local git
+git push heroku master
+
+# Migrate then seed database in heroku
+heroku run rails db:migrate
+heroku run rails db:seed
+
+# Compile the JS, CSS shizzle
+heroku run rails assets:precompile
+
+# Restart
+heroku restart
