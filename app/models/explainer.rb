@@ -23,7 +23,10 @@ class Explainer < Sequel::Model
       #   - just make sure and also create your QuestionType.new in db/seeds.rb
       # - the LIKERT question type
       # - layer of 0 (which means these questions will be shown before all others of layer > 0)
-      arr << get_question("Test Likert Question #{i}",          likert_answers,           QuestionType::STANDARD, QuestionFormat::LIKERT, 0)
+
+
+      arr << get_question("Test Likert Question #{i}",          likert_answers,           QuestionType::LIKERT, QuestionFormat::LIKERT, 0)
+
 
       # Create a question with:
       # - question text of "Test Multiple Choice Question #{i}"
@@ -32,7 +35,8 @@ class Explainer < Sequel::Model
       #   - just make sure and also create your QuestionType.new in db/seeds.rb
       # - the MULTIPLE question type
       # - layer of 1 (which means these questions will be shown before all others of layer > 1)
-      arr << get_question("Test Multiple Choice Question #{i}", multiple_choice_answers,  QuestionType::ALTERNATE, QuestionFormat::MULTIPLE, 1)
+      arr << get_question("Test Check Choice Question #{i}", multiple_choice_answers,  QuestionType::CHECK, QuestionFormat::CHECK, 1)
+      arr << get_question("Test Radio Choice Question #{i}", multiple_choice_answers,  QuestionType::MULTIPLE, QuestionFormat::MULTIPLE, 2)
     end
     arr
   end

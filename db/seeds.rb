@@ -35,12 +35,14 @@ end
 end
 
 # Question Types
-QuestionType.create(name: QuestionType::STANDARD, quantity_required: 2, live: false)
-QuestionType.create(name: QuestionType::ALTERNATE, quantity_required: 2, live: false)
+QuestionType.create(name: QuestionType::CHECK,    quantity_required: 1, live: false)
+QuestionType.create(name: QuestionType::MULTIPLE, quantity_required: 1, live: false)
+QuestionType.create(name: QuestionType::LIKERT,   quantity_required: 1, live: false)
 
 # Question Formats
-QuestionFormat.create(name: QuestionFormat::LIKERT,   view: 'question_likert')
+QuestionFormat.create(name: QuestionFormat::CHECK,    view: 'question_check')
 QuestionFormat.create(name: QuestionFormat::MULTIPLE, view: 'question_multiple')
+QuestionFormat.create(name: QuestionFormat::LIKERT,   view: 'question_likert')
 
 # Experiments
 t = Time.now

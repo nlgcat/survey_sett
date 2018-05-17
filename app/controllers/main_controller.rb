@@ -70,13 +70,37 @@ class MainController < ApplicationController
   end
 
   def answer
+    puts "-- PARAMS --"
+    pp params
+    puts "\n"
     test_question = TestQuestion.find(id: params[:id])
+    # Look for a single answer which is just named 'answer_id'
     answer = Answer.find(id: params[:answer_id])
-    unless answer
+    answers = []
+
+    if answer
+      answers << answer
+    else
+      # The user may be able to select multiple options, so anything starting with answer_id_*
+      params.each do |k,v|
+        target = 'answer_id_'
+        if k.to_s[0,target.size] == 'answer_id_'
+          a = Answer.find(id: v)
+          answers << a
+        end
+      end
+    end
+
+    if answers.size == 0
       redirect_to '/statement' and return
     end
-    test_question.answer = answer
-    test_question.save
+
+    answers.each do |answer|
+
+      test_question.add_answer answer
+      # This line may not be required
+      test_question.save
+    end
 
     # TODO - Better Sequel
     unanswered = []
@@ -87,7 +111,7 @@ class MainController < ApplicationController
     end
 
     test.test_questions.each do |test_question|
-      unanswered << true if test_question.answer == nil
+      unanswered << true if test_question.answers.size == 0
     end
 
     if unanswered.uniq.size == 1
@@ -112,7 +136,7 @@ class MainController < ApplicationController
   def run_test test
     test_questions = TestQuestion.where(test_id: test.id).order(:id)
     test_questions.each do |test_question|
-      next if test_question.answer
+      next if test_question.answers.size > 0
       @test_question = test_question
       @question = test_question.question
       render @question.question_format.to_sym

@@ -260,7 +260,7 @@ Sequel.migration do
       foreign_key :answer_id, :answers, :null=>false, :key=>[:id], :on_delete=>:cascade
       foreign_key :test_question_id, :test_questions, :null=>false, :key=>[:id], :on_delete=>:cascade
       
-      index [:answer_id, :test_question_id], :unique=>true
+      index [:answer_id, :test_question_id]
     end
   end
 end

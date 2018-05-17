@@ -2,8 +2,9 @@ class QuestionType < Sequel::Model
   plugin :timestamps, update_on_create: true
   one_to_many :questions
 
-  STANDARD  = 'Standard'
-  ALTERNATE = 'Alternate'
+  CHECK     = 'Check'
+  LIKERT    = 'Likert'
+  MULTIPLE  = 'Multiple'
 
   def self.type_id t
     self.find(name: t).id

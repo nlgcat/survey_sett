@@ -2,6 +2,7 @@ class QuestionFormat < Sequel::Model
   plugin :timestamps, update_on_create: true
   one_to_many :questions
 
+  CHECK     = 'Check'
   LIKERT    = 'Likert'
   MULTIPLE  = 'Multiple'
 
