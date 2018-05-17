@@ -14,9 +14,6 @@ test:
   port: 5432 # Optional
 production:
   adapter: postgresql
-  database: survey_sett_production
-  user: postgres # Also accept 'username' as key, if both are present 'username' is used
-  password: postgrespassword
-  host: 127.0.0.1 # Optional
-  port: 5432 # Optional
+  encoding: unicode
+  pool: 5
 
