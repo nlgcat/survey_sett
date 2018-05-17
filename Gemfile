@@ -19,6 +19,9 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# loofah security vulnerability
+gem 'loofah', '~> 2.2.1'
+
 # DB - Sequel / Postgres
 gem 'pg'
 gem 'sequel-rails'
