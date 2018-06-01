@@ -153,7 +153,8 @@ class MainController < ApplicationController
   end
 
   def assign_statements
-    statements = get_statements [:img, :txt].sample
+    finished_participants = Participant.where(final_consent: true).count
+    statements = [Statement[(finished_participants % 2) + 1]]
 
     statements.each do |s|
       t = Test.create(participant_id: current_participant_id, statement_id: s.id)
