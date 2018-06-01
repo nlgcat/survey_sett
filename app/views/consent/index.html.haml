@@ -34,6 +34,14 @@
           %td
             = raw "<div #{(@attempted_consent and @gender == '0') ? "class='alert alert-danger'" : ''}>What is your gender?</div>"
       %tr
+        %td
+          %select.big-select{:name => 'age_range'}
+            %option.big-option{value: 0, selected: @age_range }= "-- Please Select"
+            - @age_ranges.each do |age_range|
+              %option.big-option{value: age_range.id, selected: (@age_range.to_s == age_range.id.to_s)}= "#{age_range.value}"
+          %td
+            = raw "<div #{(@attempted_consent and @age_range == '0') ? "class='alert alert-danger'" : ''}>What is your age?</div>"
+      %tr
         %th 
       %tr
         %td

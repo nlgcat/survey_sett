@@ -8,7 +8,9 @@ class ConsentController < ApplicationController
     @agree_button_text  = agree_button_text
     @native             = params[:native]
     @gender             = params[:gender]
+    @age_range          = params[:age_range]
     @genders            = Gender.all
+    @age_ranges         = AgeRange.all
 
     unless @participant.consented?
       @attempted_consent = attempted_consent?
@@ -18,6 +20,7 @@ class ConsentController < ApplicationController
         end
         @participant.native = (params[:native] == 'Yes')
         @participant.gender = Gender.find(id: @gender)
+        @participant.age_range = Gender.find(id: @age_range)
         @participant.save
       end
     end
@@ -32,6 +35,7 @@ class ConsentController < ApplicationController
       return false unless v
     end
     return false unless Gender.find(id: @gender)
+    return false unless AgeRange.find(id: @age_range)
     %w(Yes No).include? params[:native]
   end
 

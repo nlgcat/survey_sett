@@ -1,6 +1,7 @@
 class Participant < Sequel::Model
   plugin          :timestamps, update_on_create: true
   one_through_one :gender
+  one_through_one :age_range
   many_to_many    :consent_statements
   one_to_many     :tests
   one_through_one :education_level

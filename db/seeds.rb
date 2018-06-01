@@ -14,7 +14,6 @@ end
 h = {
   explained:    "By ticking this box I confirm that the research project <strong>#{@project_name}</strong> has been explained to me. I have had the opportunity to ask questions about the project and have had these answered satisfactorily.", 
   insights:     "By ticking this box I consent to the material I contribute being used to generate insights for the research project <strong>#{@project_name}</strong>.",
-  # voluntary:    "By ticking this box I understand that my participation in this research is voluntary and that I may withdraw from the study at any time.",
   voluntary:    "By ticking this box I understand that my participation in this research is voluntary and that I may stop entering data at any point. All submitted data is anonymous and it is not possible for the researcher to identify me.  I understand that because of this, my submitted data cannot be shown to me or deleted at a later date.  Any participants who have entered incomplete data will have their data removed automatically.",
   future:       "By ticking this box I consent to allow the fully anonymised data to be used for future publications and other scholarly means of disseminating the findings from the research project.",
   stored:       "By ticking this box I understand that the information/data acquired will be securely stored by researchers, but that appropriately anonymised data may in future be made available to others for research purposes only.",
@@ -30,8 +29,12 @@ end
   Gender.create(value: gender)
 end
 
-['High School', 'Bachelors Degree', 'Masters Degree', 'Doctorate', 'N/A', 'Prefer not to say'].each do |e|
-  EducationLevel.create(value: e)
+['High School', 'Bachelors Degree', 'Masters Degree', 'Doctorate', 'N/A', 'Prefer not to say'].each do |education_level|
+  EducationLevel.create(value: education_level)
+end
+
+['18-25', '26-35', '36-45', '46-55', '56-65', '66+'].each do |age|
+  AgeRange.create(value: age)
 end
 
 # Question Types
@@ -51,70 +54,19 @@ t = Time.now
 # Explainer Categories
 ExplainerCategory.create(name: 'A', description: "Fill me in!")
 ExplainerCategory.create(name: 'B', description: "Fill me in!")
-ExplainerCategory.create(name: 'C', description: "Fill me in!")
-ExplainerCategory.create(name: 'D', description: "Fill me in!")
-ExplainerCategory.create(name: 'E', description: "Fill me in!")
 
 arr = [
   {
-    context:  'The blah blah blah AI system does blah blah blah',
+    context:  'Title of scenario A',
     img:      'blah.jpg',
-    txt:      nil,
+    txt:      'text of scenario A',
     category: 'A'
   },
   {
-    context:  'The blah blah blah AI system does blah blah blah',
+    context:  'Title of scenario B',
     img:      'blah.jpg',
-    txt:      nil,
+    txt:      'text of scenario B',
     category: 'B'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      'blah.jpg',
-    txt:      nil,
-    category: 'C'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      'blah.jpg',
-    txt:      nil,
-    category: 'D'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      'blah.jpg',
-    txt:      nil,
-    category: 'E'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      nil,
-    txt:      'The explanation is blah blah blah',
-    category: 'A'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      nil,
-    txt:      'The explanation is blah blah blah',
-    category: 'B'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      nil,
-    txt:      'The explanation is blah blah blah',
-    category: 'C'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      nil,
-    txt:      'The explanation is blah blah blah',
-    category: 'D'
-  },
-  {
-    context:  'The blah blah blah AI system does blah blah blah',
-    img:      nil,
-    txt:      'The explanation is blah blah blah',
-    category: 'E'
   },
 ]
 
@@ -144,5 +96,3 @@ arr.each do |h|
     statement.add_question question
   end
 end
-
-pp Statement.all

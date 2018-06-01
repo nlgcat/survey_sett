@@ -1,5 +1,14 @@
 Sequel.migration do
   change do
+    create_table(:age_ranges) do
+      primary_key :id
+      column :value, "text"
+      column :created_at, "timestamp without time zone", :null=>false
+      column :updated_at, "timestamp without time zone", :null=>false
+      
+      index [:value], :unique=>true
+    end
+    
     create_table(:answers) do
       primary_key :id
       column :value, "text", :null=>false
@@ -128,6 +137,13 @@ Sequel.migration do
       column :filename, "text", :null=>false
       
       primary_key [:filename]
+    end
+    
+    create_table(:age_ranges_participants) do
+      foreign_key :age_range_id, :age_ranges, :null=>false, :key=>[:id]
+      foreign_key :participant_id, :participants, :null=>false, :key=>[:id]
+      
+      index [:age_range_id, :participant_id], :unique=>true
     end
     
     create_table(:answers_participant) do
@@ -295,5 +311,7 @@ self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('2018042411160
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180425095446_create_answers_questions.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180425103904_create_funders.rb')"
 self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180425103909_create_researchers.rb')"
+self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180601093814_create_age_ranges.rb')"
+self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20180601093954_create_age_ranges_participants.rb')"
                 end
               end
