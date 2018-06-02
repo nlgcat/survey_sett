@@ -134,7 +134,8 @@ class MainController < ApplicationController
   end
 
   def run_test test
-    test_questions = TestQuestion.where(test_id: test.id).order(:id)
+    @test = test
+    test_questions = test.test_questions.sort_by{|tq| tq.id}
     test_questions.each do |test_question|
       next if test_question.answers.size > 0
       @test_question = test_question
@@ -142,6 +143,14 @@ class MainController < ApplicationController
       render @question.question_format.to_sym
       break
     end
+    # test_questions = TestQuestion.where(test_id: test.id).order(:id)
+    # test_questions.each do |test_question|
+    #   next if test_question.answers.size > 0
+    #   @test_question = test_question
+    #   @question = test_question.question
+    #   render @question.question_format.to_sym
+    #   break
+    # end
   end
 
   def thank_you

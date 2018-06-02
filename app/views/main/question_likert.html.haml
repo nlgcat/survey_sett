@@ -1,14 +1,14 @@
 %h3 Scenario:
 .sentence
-  %p= @question.statement.value
+  %p= @test.statement.value
 %br
 %h3 Explanation:
-- if @question.statement.explainer.explainer_image
-  =image_tag  @question.statement.explainer.explainer_image.url, class: "img-responsive"
+- if @test.statement.explainer.explainer_image
+  =image_tag  @test.statement.explainer.explainer_image.url, class: "img-responsive"
 - else
   .sentence
     %p
-      =@question.statement.explainer.explainer_text.text
+      =@test.statement.explainer.explainer_text.text
 %br
 %h3 Question:
 %br
