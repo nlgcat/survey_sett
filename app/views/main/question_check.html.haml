@@ -1,10 +1,17 @@
 %h3= @question.value
 %form{ :action => "/answer/#{@test_question.id}?", :method => "post", :id => 'the_form'}
   = hidden_field_tag 'question_id', @question.id
+  - answers = @question.answers
   - @question.answers(order: :id).each do |answer|
     %p
-      %span
+    - if answers.size > 4
+      %div.col-md-6
         / document.getElementById(\'b1\').disabled = false;
         =check_box_tag("answer_id_#{answer.id}", "#{answer.id}", false, {:onchange => 'if ($("#the_form input:checkbox:checked").length > 0) { document.getElementById(\'b1\').disabled = false; } else { document.getElementById(\'b1\').disabled = true; }'})
         =label_tag "answer_id_#{answer.id}", answer.value.sub(/^./, &:upcase)
-  %input{:type => "submit", :value => "Next", :class => "btn btn-primary btn-lg", :id => "b1", :disabled => true}
+    - else
+      %div
+        / document.getElementById(\'b1\').disabled = false;
+        =check_box_tag("answer_id_#{answer.id}", "#{answer.id}", false, {:onchange => 'if ($("#the_form input:checkbox:checked").length > 0) { document.getElementById(\'b1\').disabled = false; } else { document.getElementById(\'b1\').disabled = true; }'})
+        =label_tag "answer_id_#{answer.id}", answer.value.sub(/^./, &:upcase)
+  %input{:type => "submit", :value => "Next", :class => "btn btn-primary btn-lg top-margin", :id => "b1", :disabled => true}

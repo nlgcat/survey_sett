@@ -15,36 +15,40 @@
         %tr
           %td
             = raw "<input type='checkbox' class='big-checkbox' style='width:48px;height:48px' name='#{name}' value='1' #{@errors[name] ? 'checked' : '' } />"
-          %td.consent-text
+          %td.consent-text{ colspan: 3 }
             = raw "<div #{(@errors[name] == false and @attempted_consent) ? "class='alert alert-danger'" : ''}>#{text}</div>"
       %tr
-        %td
+        %td{ colspan: 2 }
           %select.big-select{:name => 'native'}
             %option.big-option{value: "-- Please Select", selected: (['Yes','No'].include? @native) }= "-- Please Select"
             %option.big-option{value: 'Yes', selected: @native == "Yes"}= "Yes"
             %option.big-option{value: 'No', selected: @native == "No"}= "No"
-          %td
+          %td{ colspan: 2 }
             = raw "<div #{(@attempted_consent and not ['Yes','No'].include? @native) ? "class='alert alert-danger'" : ''}>Is English your native language?</div>"
       %tr
-        %td
+        %td{ colspan: 2 }
           %select.big-select{:name => 'gender'}
             %option.big-option{value: 0, selected: @gender }= "-- Please Select"
             - @genders.each do |gender|
               %option.big-option{value: gender.id, selected: (@gender.to_s == gender.id.to_s)}= "#{gender.value}"
-          %td
+          %td{ colspan: 2 }
             = raw "<div #{(@attempted_consent and @gender == '0') ? "class='alert alert-danger'" : ''}>What is your gender?</div>"
       %tr
-        %td
+        %td{ colspan: 2 }
           %select.big-select{:name => 'age_range'}
             %option.big-option{value: 0, selected: @age_range }= "-- Please Select"
             - @age_ranges.each do |age_range|
               %option.big-option{value: age_range.id, selected: (@age_range.to_s == age_range.id.to_s)}= "#{age_range.value}"
-          %td
+          %td{ colspan: 2 }
             = raw "<div #{(@attempted_consent and @age_range == '0') ? "class='alert alert-danger'" : ''}>What is your age?</div>"
       %tr
         %th 
+        %th 
+        %th 
+        %th 
       %tr
-        %td
+        %td{ colspan: 2 }
+        %td{ colspan: 2 }
           = raw "<input type='submit' name='commit' value='#{@agree_button_text}' class='btn btn-primary btn-lg' data-disable-with='I agree to participate' />"
 
 

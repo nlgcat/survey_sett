@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.top-margin {
+  margin-top: 20px;
+}
+
 div.sentence {
   padding: 10px;
   border-style: solid;
